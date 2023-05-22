@@ -5,7 +5,15 @@ import Job from "../models/Job";
 
 export const createJobController = async (req: Request, res: Response) => {
   try {
-    const newJob = new Job(req.body);
+    const newJob = new Job({
+        title: req.body.title,
+        description: req.body.description,
+        company: req.body.company,
+        location: req.body.location,
+        requiredSkills: req.body.requiredSkills,
+        salary: req.body.salary,
+        status: req.body.status,
+    });
     const job = await JobServices.createJob(newJob);
     res.json(job);
   } catch (error) {
