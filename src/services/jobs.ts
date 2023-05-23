@@ -10,6 +10,10 @@ const getJobs = async (): Promise<JobDocument[]> => {
   return Job.find();
 };
 
+const getJob = async (id: string): Promise<JobDocument | null> => {
+  return Job.findById(id);
+}
+
 const deleteJob = async (id: string): Promise<JobDocument | null> => {
   return Job.findByIdAndDelete(id);
 };
@@ -21,4 +25,4 @@ const updateJob = async (
   return Job.findByIdAndUpdate(id, newData, { new: true });
 };
 
-export default { createJob, getJobs, deleteJob, updateJob };
+export default { createJob, getJobs, getJob, deleteJob, updateJob };
